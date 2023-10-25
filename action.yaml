@@ -1,0 +1,14 @@
+name: "test action"
+description: "test action"
+inputs:
+  args:
+    description: "Arguments to customize code analyzer"
+    default: --output-format sarif --output-path ./
+runs:
+  using: "docker"
+  image: "docker://raphaelcastilhoc/test-security:latest"
+  env:
+    OLYMPIX_INTEGRATION_ORIGIN: "gha"
+  args:
+  - analyze
+  - ${{ inputs.args }}
